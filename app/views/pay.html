@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+</head>
+
+<body role="document">
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Let's Go</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a ng-click="GoToMain()">主页</a></li>
+                <li><a ng-click="GoToItemList()">商品列表</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"> <a ng-click="GoToCart()"><span class=" glyphicon  glyphicon-shopping-cart"></span>购物车(<span>{{cart_number}}</span>)</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container theme-showcase"  role="main">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="panel panel-default col-sm-12 theme-showcase" role="main" >
+        <div class="panel-heading">
+            <h3 class="panel-title text_left">购物清单</h3>
+        </div>
+        <div class="panel-body">
+            {{time}}
+            <table class="table table-bordered text_center">
+                <thead>
+                <tr>
+                    <th class="text_center">
+                        分类
+                    </th>
+                    <th class="text_center">
+                        名称
+                    </th>
+                    <th class="text_center">
+                        单价（元）
+                    </th>
+                    <th class="text_center">
+                        单位
+                    </th>
+                    <th class="text_center">
+                        数量
+                    </th>
+                    <th class="text_center">
+                        小计
+                    </th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="goods in all_goods">
+                <tr>
+                    <th class='text_center'>{{goods.kind}}</th>
+                    <th class='text_center'>{{goods.name}}</th>
+                    <th class='text_center'>{{goods.price}}</th>
+                    <th class='text_center'>{{goods.unit}}</th>
+                    <th class='text_center'>{{goods.count}}</th>
+                    <th class='text_center'>{{goods.cost}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title text_left">赠送商品</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered text_center">
+                <thead>
+                <tr>
+                    <th class="text_center">
+                        分类
+                    </th>
+                    <th class="text_center">
+                        名称
+                    </th>
+                    <th class="text_center">
+                        数量
+                    </th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="goods in preferential_goods">
+                <tr>
+                    <th class='text_center'>{{goods.kind}}</th>
+                    <th class='text_center'>{{goods.name}}</th>
+                    <th class='text_center'>{{goods.count}}</th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p align="right">总计：<span>{{total_cost}}</span>元</p>
+        <p align="right">节省：<span>{{total_preferential}}</span>元</p>
+        <p align="right"><a ng-click="ClearGoods();" class="btn btn-primary btn-4 sure" role="button">确认</a></p>
+    </div>
+</div>
+
+
+</body>
+</html>

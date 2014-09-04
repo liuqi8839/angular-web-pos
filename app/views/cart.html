@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+</head>
+
+<body role="document">
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Let's Go</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a ng-click="GoToMain()">主页</a></li>
+                <li><a ng-click="GoToItemList()">商品列表</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"> <a href="#"><span class=" glyphicon  glyphicon-shopping-cart"></span>购物车(<span>{{cart_number}}</span>)</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container theme-showcase"  role="main">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="panel panel-default col-sm-12 theme-showcase" role="main" >
+        <div class="panel-heading">
+            <h3 class="panel-title text_left">购物清单</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered text_center">
+                <thead>
+                <tr>
+                    <th class="text_center">
+                        分类
+                    </th>
+                    <th class="text_center">
+                        名称
+                    </th>
+                    <th class="text_center">
+                        单价（元）
+                    </th>
+                    <th class="text_center">
+                        单位
+                    </th>
+                    <th class="text_center">
+                        数量
+                    </th>
+                    <td class="text_center">
+                        小计
+                    </td>
+                </tr>
+                </thead>
+                <tbody id="page_head">
+                <tr ng-repeat="goods in allGoods">
+                    <td>{{goods.kind}}</td>
+                    <td>{{goods.name}}</td>
+                    <td>{{goods.price}}</td>
+                    <td>{{goods.unit}}</td>
+                    <td align="center">
+                        <div class='input-group input-grounp_width'>
+                            <span class='input-group-btn'>
+                                <button class='btn btn-default' ng-click="subGoods(goods.name)" type='button'>-</button>
+                            </span>
+                                <input type='text' class='form-control' value={{goods.count}}>
+                            <span class='input-group-btn'>
+                                <button class='btn btn-default' ng-click="addGoods(goods.name)" type='button'>+</button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>{{goods.cost}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p align="right">总计：<span>{{total_cost}}</span>元</p>
+            <p align="right"><a ng-click="GoToPay()" class="btn btn-primary btn-4" role="button">付款</a></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
